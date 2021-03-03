@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta name='viewport' content='with=device_with, initial-scale=1,maximun-scale=1' user-scalable='no'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+    <!--los estilos personales después de boostrap. Si queremos cambiar el estilo del boostrap lo podemos hacer en nuestro archivo css creado para ese fin-->
+    <link rel="stylesheet" href="css/estilos.css">
+    <title>Login</title>
+</head>
+
+<body>
+
+    <div claas="container">
+
+        <div id="form1" class="container">
+
+            <form class="form1" action="/login" method="POST">
+                <h3>Ingrese a la plataforma</h3>
+                <br>
+                <input required name="email" type="text" class="form-control" placeholder="Ingrese su email">
+                <br>
+                <input minlength="3" required name="password" type="password" class="form-control"
+                    placeholder="Ingrese contraseña">
+                <br>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+
+        <%if(errors!=""){%>
+            <div class="alert alert-danger">
+                <%=errors%>
+            </div>
+            <%}%>
+                <!--si borró (en este caso) entonces aviso-->
+                <%if(mensajes!=""){%>
+                    <div class="alert alert-success">
+                        <%=mensajes%>
+                    </div>
+                    <%}%>
+
+
+
+
+                        <!--formulario de registro-->
+                        <div id="form2" class="container">
+                            <form action="/register" method="POST">
+
+                                <h3>Regístrese</h3>
+                                <br>
+                                <input required name="name" type="text" class="form-control"
+                                    placeholder="Ingrese su nombre">
+                                <br>
+
+                                <input required name="email" type="email" class="form-control"
+                                    placeholder="Ingrese su email">
+                                <br>
+
+                                <input id="password" required name="password" type="password" class="form-control"
+                                    placeholder="Ingrese su contraseña">
+                                <br>
+
+
+                                <input id="password_confirm" required name="password_confirm" type="password"
+                                    class="form-control" placeholder="Reingrese su contraseña">
+                                <br>
+
+                                <button id="registro" type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+    </div>
+    <script>
+
+        $(document).ready(function () {
+
+            $("#registro").on("submit", function () {
+                const pass1 = $("#password").val();
+                const pass2 = $("#password_confirm").val();
+                if (pass1 != pass2) {
+                    req.flash("errors", "Los datos son incorrectos")
+                }
+                return false;
+            });
+
+        });
+
+
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>
